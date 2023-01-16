@@ -6,6 +6,7 @@
 //
 
 import UIKit
+import CoreData
 
 class AddNoteViewController: UIViewController {
     
@@ -50,7 +51,7 @@ class AddNoteViewController: UIViewController {
     func setFrameTextFields() {
         noteTitle.frame = CGRect(
             x: 20,
-            y: 120,
+            y: 150,
             width: view.width - 40,
             height: 44
         )
@@ -79,6 +80,61 @@ class AddNoteViewController: UIViewController {
     
     @objc private func didTapSaveButton() {
         
+        if noteTitle.text!.isEmpty || noteTextView.text.isEmpty {
+           let alertController = UIAlertController(
+               title: "Добавьте изменения",
+               message: "Введите название и текст",
+               preferredStyle: .alert
+           )
+
+           let cancelAction = UIAlertAction(
+               title: "Ok",
+               style: .cancel,
+               handler: nil
+           )
+           alertController.addAction(cancelAction)
+
+           present(alertController, animated: true)
+           return
+        }
+        
+        guard let appDelegate = UIApplication.shared.delegate
+             as? AppDelegate else { return }
+
+        let context = appDelegate.persistentContainer.viewContext
+
+        guard let entity = NSEntityDescription.entity(forEntityName: "Note", in: context) else { return }
+        
+        let note = Note(entity: entity, insertInto: context)
+
+        note.title = (noteTitle.text! as NSObject) as! String
+        note.text = (noteTextView.text as NSObject) as! String
+        note.date = (Date.now as NSObject) as! Date
+
+        do {
+            try context.save()
+            
+            let alertController = UIAlertController(
+                title: "Заметка сохранена",
+                message: "",
+                 preferredStyle: .alert
+            )
+
+            let okayAction = UIAlertAction(
+                  title: "Ok",
+                  style: .cancel) { [weak self] _ in
+               guard let self = self else { return }
+               self.dismiss(animated: true) {
+                   self.dismiss(animated: true, completion: nil)
+               }
+            }
+
+            alertController.addAction(okayAction)
+            present(alertController, animated: true)
+
+        } catch let error as NSError {
+            print(error.localizedDescription)
+        }
     }
 }
 

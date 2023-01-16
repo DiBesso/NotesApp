@@ -32,4 +32,11 @@ import UIKit
             top + height
         }
 
+        
     }
+
+//extension String {
+//   func trim() -> String {
+//      self.trimmingCharacters(in: .whitespacesAndNewlines)
+//   }
+//}
