@@ -24,7 +24,6 @@ class NotesTableViewController: UITableViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         setNavigationBar()
-        
     }
     
     //MARK: - Set Navigation
@@ -70,7 +69,6 @@ class NotesTableViewController: UITableViewController {
     override func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCell.EditingStyle, forRowAt indexPath: IndexPath) {
         if editingStyle == .delete {
             
-            
             guard let appDelegate = UIApplication.shared.delegate
                     as? AppDelegate else { return }
             let context =
@@ -79,10 +77,10 @@ class NotesTableViewController: UITableViewController {
             let fetchRequest: NSFetchRequest<Note> = Note.fetchRequest()
             
             if let notes = try? context.fetch(fetchRequest) {
+                self.notes.remove(at: indexPath.row)
                 let note = notes[indexPath.row]
                 context.delete(note)
                 tableView.reloadData()
-                
             }
             
             do {
