@@ -30,6 +30,8 @@ class NoteDetailViewController: UIViewController {
         return view
     }()
     
+    //MARK: - UIViewController
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         view.backgroundColor = .systemBackground
@@ -67,8 +69,6 @@ class NoteDetailViewController: UIViewController {
             height: view.bottom - 250
         )
     }
-
-
 }
 
 // MARK: - Extension

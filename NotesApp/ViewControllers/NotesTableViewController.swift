@@ -10,7 +10,11 @@ import CoreData
 
 class NotesTableViewController: UITableViewController {
     
-    var notes: [Note] = []
+    //MARK: - Private Properties
+    
+    private var notes: [Note] = []
+    
+    //MARK: - UIViewController
     
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
@@ -29,8 +33,8 @@ class NotesTableViewController: UITableViewController {
     //MARK: - Set Navigation
     
     private func setNavigationBar() {
-        title = "Заметки"
         
+        title = "Заметки"
         navigationItem.rightBarButtonItem = UIBarButtonItem(
             barButtonSystemItem: .add,
             target: self,

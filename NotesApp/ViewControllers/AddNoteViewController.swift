@@ -36,6 +36,7 @@ class AddNoteViewController: UIViewController {
         
         view.backgroundColor = .systemBackground
         addAndSaveNotes()
+        addBackButton()
     }
     
     override func viewWillLayoutSubviews() {
@@ -63,6 +64,21 @@ class AddNoteViewController: UIViewController {
         )
     }
     
+    
+    private func addBackButton() {
+        navigationItem.leftBarButtonItem = UIBarButtonItem(
+            title: "Назад",
+            style: .done,
+            target: self,
+            action: #selector(didTapBackButton)
+        )
+    }
+    
+    @objc private func didTapBackButton() {
+        self.dismiss(animated: true) {
+            self.dismiss(animated: true, completion: nil)
+        }
+    }
     //MARK: - Add and save notes
     
     private func addAndSaveNotes() {

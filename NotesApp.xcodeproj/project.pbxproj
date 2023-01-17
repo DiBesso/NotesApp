@@ -66,20 +66,44 @@
 		A40D506929728F3E00C50885 /* NotesApp */ = {
 			isa = PBXGroup;
 			children = (
+				A46896802976E8C800415DA2 /* StoryBoards */,
+				A468967E2976E87400415DA2 /* ViewControllers */,
+				A468967D2976E83000415DA2 /* Extensions */,
 				A46E6F002975A7830037850B /* Models */,
 				A40D506A29728F3E00C50885 /* AppDelegate.swift */,
 				A40D506C29728F3E00C50885 /* SceneDelegate.swift */,
-				A40D506E29728F3E00C50885 /* NotesTableViewController.swift */,
-				A40D5081297294FC00C50885 /* AddNoteViewController.swift */,
-				A46E6F032975BCB80037850B /* NoteDetailViewController.swift */,
-				A40D508329758A7800C50885 /* Extension.swift */,
-				A40D507029728F3E00C50885 /* Main.storyboard */,
-				A40D507629728F4100C50885 /* Assets.xcassets */,
 				A40D507829728F4100C50885 /* LaunchScreen.storyboard */,
+				A40D507629728F4100C50885 /* Assets.xcassets */,
 				A40D507B29728F4100C50885 /* Info.plist */,
 				A40D507329728F3E00C50885 /* NotesApp.xcdatamodeld */,
 			);
 			path = NotesApp;
+			sourceTree = "<group>";
+		};
+		A468967D2976E83000415DA2 /* Extensions */ = {
+			isa = PBXGroup;
+			children = (
+				A40D508329758A7800C50885 /* Extension.swift */,
+			);
+			path = Extensions;
+			sourceTree = "<group>";
+		};
+		A468967E2976E87400415DA2 /* ViewControllers */ = {
+			isa = PBXGroup;
+			children = (
+				A40D506E29728F3E00C50885 /* NotesTableViewController.swift */,
+				A40D5081297294FC00C50885 /* AddNoteViewController.swift */,
+				A46E6F032975BCB80037850B /* NoteDetailViewController.swift */,
+			);
+			path = ViewControllers;
+			sourceTree = "<group>";
+		};
+		A46896802976E8C800415DA2 /* StoryBoards */ = {
+			isa = PBXGroup;
+			children = (
+				A40D507029728F3E00C50885 /* Main.storyboard */,
+			);
+			path = StoryBoards;
 			sourceTree = "<group>";
 		};
 		A46E6F002975A7830037850B /* Models */ = {
