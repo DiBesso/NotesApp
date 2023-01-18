@@ -11,7 +11,6 @@ import CoreData
 class NotesTableViewController: UITableViewController {
     
     //MARK: - Private Properties
-    
     private var notes: [Note] = []
     
     //MARK: - UIViewController
@@ -25,6 +24,7 @@ class NotesTableViewController: UITableViewController {
         fetchNotes()
         tableView.reloadData()
     }
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         setNavigationBar()
@@ -66,7 +66,6 @@ class NotesTableViewController: UITableViewController {
         
         let note = notes[indexPath.row]
         cell.textLabel?.text = note.title
-        
         return cell
     }
     

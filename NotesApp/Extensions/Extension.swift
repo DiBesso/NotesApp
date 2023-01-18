@@ -32,6 +32,5 @@ import UIKit
             top + height
         }
 
-        
     }
 

@@ -13,7 +13,6 @@ import CoreData
       @NSManaged public var text: String
       @NSManaged public var title: String
       @NSManaged public var date: Date
-
   }
 
   extension Note {
@@ -22,3 +21,4 @@ import CoreData
           NSFetchRequest<Note>(entityName: "Note")
       }
   }
+

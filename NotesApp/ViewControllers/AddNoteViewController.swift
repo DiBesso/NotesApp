@@ -64,6 +64,7 @@ class AddNoteViewController: UIViewController {
         )
     }
     
+    // MARK: - add buttons on navigationBar
     
     private func addBackButton() {
         navigationItem.leftBarButtonItem = UIBarButtonItem(
@@ -79,10 +80,8 @@ class AddNoteViewController: UIViewController {
             self.dismiss(animated: true, completion: nil)
         }
     }
-    //MARK: - Add and save notes
     
     private func addAndSaveNotes() {
-        
         title = "Новая заметка"
         navigationItem.rightBarButtonItem = UIBarButtonItem(
             title: "Сохранить",
@@ -97,57 +96,57 @@ class AddNoteViewController: UIViewController {
     @objc private func didTapSaveButton() {
         
         if noteTitle.text!.isEmpty || noteTextView.text.isEmpty {
-           let alertController = UIAlertController(
-               title: "Добавьте изменения",
-               message: "Введите название и текст",
-               preferredStyle: .alert
-           )
-
-           let cancelAction = UIAlertAction(
-               title: "Ok",
-               style: .cancel,
-               handler: nil
-           )
-           alertController.addAction(cancelAction)
-
-           present(alertController, animated: true)
-           return
+            let alertController = UIAlertController(
+                title: "Добавьте изменения",
+                message: "Введите название и текст",
+                preferredStyle: .alert
+            )
+            
+            let cancelAction = UIAlertAction(
+                title: "Ok",
+                style: .cancel,
+                handler: nil
+            )
+            alertController.addAction(cancelAction)
+            
+            present(alertController, animated: true)
+            return
         }
         
         guard let appDelegate = UIApplication.shared.delegate
-             as? AppDelegate else { return }
-
+                as? AppDelegate else { return }
+        
         let context = appDelegate.persistentContainer.viewContext
-
+        
         guard let entity = NSEntityDescription.entity(forEntityName: "Note", in: context) else { return }
         
         let note = Note(entity: entity, insertInto: context)
-
+        
         note.title = (noteTitle.text! as NSObject) as! String
         note.text = (noteTextView.text as NSObject) as! String
         note.date = (Date.now as NSObject) as! Date
-
+        
         do {
             try context.save()
             
             let alertController = UIAlertController(
                 title: "Заметка сохранена",
                 message: "",
-                 preferredStyle: .alert
+                preferredStyle: .alert
             )
-
+            
             let okayAction = UIAlertAction(
-                  title: "Ok",
-                  style: .cancel) { [weak self] _ in
-               guard let self = self else { return }
-               self.dismiss(animated: true) {
-                   self.dismiss(animated: true, completion: nil)
-               }
-            }
-
+                title: "Ok",
+                style: .cancel) { [weak self] _ in
+                    guard let self = self else { return }
+                    self.dismiss(animated: true) {
+                        self.dismiss(animated: true, completion: nil)
+                    }
+                }
+            
             alertController.addAction(okayAction)
             present(alertController, animated: true)
-
+            
         } catch let error as NSError {
             print(error.localizedDescription)
         }
@@ -165,14 +164,14 @@ extension AddNoteViewController: UITextFieldDelegate, UITextViewDelegate {
             noteTextView.becomeFirstResponder()
         }
     }
-
+    
     func textFieldShouldReturn(_ textField: UITextField) ->
-        Bool {
+    Bool {
         noteTitle.resignFirstResponder()
         noteTextView.becomeFirstResponder()
         return true
     }
-
+    
     func textViewDidBeginEditing(_ textView: UITextView) {
         if textView == noteTextView &&
             noteTextView.text == "" {
@@ -180,7 +179,7 @@ extension AddNoteViewController: UITextFieldDelegate, UITextViewDelegate {
             noteTextView.textColor = .label
         }
     }
-
+    
     func textViewDidEndEditing(_ textView: UITextView) {
         if textView == noteTextView &&
             noteTextView.text.isEmpty {

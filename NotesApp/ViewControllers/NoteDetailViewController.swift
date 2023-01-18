@@ -74,19 +74,19 @@ class NoteDetailViewController: UIViewController {
 // MARK: - Extension
 
 extension NoteDetailViewController: UITextViewDelegate,
-     UITextFieldDelegate {
+                                    UITextFieldDelegate {
     
     func textFieldDidEndEditing(_ textField: UITextField) {
         
         resignFirstResponder()
         guard let note = self.note else { return }
         if textField == noteTitle &&
-               noteTitle.text! != note.title {
-
+            noteTitle.text! != note.title {
+            
             let context =
-                 appDelegate.persistentContainer.viewContext
+            appDelegate.persistentContainer.viewContext
             note.title = noteTitle.text!
-
+            
             do {
                 try context.save()
             } catch let error as NSError {
@@ -94,18 +94,18 @@ extension NoteDetailViewController: UITextViewDelegate,
             }
         }
     }
-
+    
     func textViewDidEndEditing(_ textView: UITextView) {
         
         resignFirstResponder()
         guard let note = self.note else { return }
         if textView == noteTextView &&
             noteTextView.text != note.text {
-
+            
             let context =
-                 appDelegate.persistentContainer.viewContext
+            appDelegate.persistentContainer.viewContext
             note.text = noteTextView.text
-
+            
             do {
                 try context.save()
             } catch let error as NSError {
